@@ -11,4 +11,4 @@ abstract class TestCase extends BaseTestCase
     {
         return [BreadcrumbsServiceProvider::class];
     }
-} 
+}
