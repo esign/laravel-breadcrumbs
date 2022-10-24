@@ -1,8 +1,8 @@
 <?php
 
-namespace :vendor_namespace\Tests;
+namespace Esign\Breadcrumbs\Tests;
 
-class :studly_package_nameTest extends TestCase
+class BreadcrumbsTest extends TestCase
 {
     /** @test */
     public function test()

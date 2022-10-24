@@ -1,13 +1,13 @@
 <?php
 
-namespace :vendor_namespace\Facades;
+namespace Esign\Breadcrumbs\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class :studly_package_nameFacade extends Facade
+class BreadcrumbsFacade extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return ':package_name';
+        return 'breadcrumbs';
     }
 }

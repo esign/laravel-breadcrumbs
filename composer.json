@@ -1,17 +1,17 @@
 {
-    "name": ":vendor/:package_slug",
-    "description": ":package_description",
+    "name": "esign/laravel-breadcrumbs",
+    "description": "Manage breadcrumbs within your Laravel application",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "esign",
+        "breadcrumbs"
     ],
-    "homepage": "https://github.com/:vendor/:package_slug",
+    "homepage": "https://github.com/esign/laravel-breadcrumbs",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Jordy Van der Haegen",
+            "email": "jordy.vanderhaegen@gmail.com",
             "role": "Developer"
         }
     ],
@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor_namespace_escaped\\": "src"
+            "Esign\\Breadcrumbs\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor_namespace_escaped\\Tests\\": "tests"
+            "Esign\\Breadcrumbs\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +44,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                ":vendor_namespace_escaped\\:studly_package_nameServiceProvider"
+                "Esign\\Breadcrumbs\\BreadcrumbsServiceProvider"
             ],
             "aliases": {
-                ":studly_package_name": ":vendor_namespace_escaped\\Facades\\:studly_package_nameFacade"
+                "Breadcrumbs": "Esign\\Breadcrumbs\\Facades\\BreadcrumbsFacade"
             }
         }
     },
