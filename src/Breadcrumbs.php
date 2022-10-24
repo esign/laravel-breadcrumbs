@@ -24,16 +24,16 @@ class Breadcrumbs
         Breadcrumb | iterable | string | null $label,
         string | null $url = null,
     ): static {
-        if (is_string($breadcrumb) || is_null($breadcrumb)) {
-            $this->add(Breadcrumb::create($breadcrumb, $url));
+        if (is_string($label) || is_null($label)) {
+            $this->add(Breadcrumb::create($label, $url));
         }
 
-        if (is_iterable($breadcrumb)) {
-            $this->addIterable($breadcrumb);
+        if (is_iterable($label)) {
+            $this->addIterable($label);
         }
 
-        if ($breadcrumb instanceof Breadcrumb) {
-            $this->breadcrumbs->push($breadcrumb);
+        if ($label instanceof Breadcrumb) {
+            $this->breadcrumbs->push($label);
         }
 
         return $this;
