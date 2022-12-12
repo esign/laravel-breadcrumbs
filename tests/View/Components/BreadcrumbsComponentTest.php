@@ -4,17 +4,16 @@ namespace Esign\Breadcrumbs\Tests\View\Components;
 
 use Esign\Breadcrumbs\Facades\Breadcrumbs;
 use Esign\Breadcrumbs\Tests\TestCase;
-use Esign\Breadcrumbs\View\Components\Breadcrumbs as BreadcrumbsComponent;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 
-class BreadcrumbsTest extends TestCase
+class BreadcrumbsComponentTest extends TestCase
 {
     use InteractsWithViews;
 
     /** @test */
     public function it_wont_render_anything_if_breadcrumbs_are_empty()
     {
-        $component = $this->component(BreadcrumbsComponent::class);
+        $component = $this->blade('<x-breadcrumbs />');
 
         $this->assertEquals('', (string) $component);
     }
@@ -24,7 +23,7 @@ class BreadcrumbsTest extends TestCase
     {
         Breadcrumbs::add('Home');
 
-        $component = $this->component(BreadcrumbsComponent::class);
+        $component = $this->blade('<x-breadcrumbs />');
 
         $component->assertDontSee('href');
         $component->assertSee('Home');
@@ -35,7 +34,7 @@ class BreadcrumbsTest extends TestCase
     {
         Breadcrumbs::add('Home', 'http://localhost');
 
-        $component = $this->component(BreadcrumbsComponent::class);
+        $component = $this->blade('<x-breadcrumbs />');
 
         $component->assertSee('href="http://localhost"', false);
         $component->assertSee('Home');

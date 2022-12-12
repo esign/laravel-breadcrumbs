@@ -5,7 +5,7 @@ namespace Esign\Breadcrumbs\View\Components;
 use Esign\Breadcrumbs\Facades\Breadcrumbs as BreadcrumbsFacade;
 use Illuminate\View\Component;
 
-class Breadcrumbs extends Component
+class BreadcrumbsComponent extends Component
 {
     public function render()
     {

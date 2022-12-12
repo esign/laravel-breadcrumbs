@@ -2,7 +2,8 @@
 
 namespace Esign\Breadcrumbs;
 
-use Esign\Breadcrumbs\View\Components\Breadcrumbs as BreadcrumbsComponent;
+use Esign\Breadcrumbs\View\Components\BreadcrumbsComponent;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class BreadcrumbsServiceProvider extends ServiceProvider
@@ -10,9 +11,7 @@ class BreadcrumbsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom($this->viewPath(), 'breadcrumbs');
-        $this->loadViewComponentsAs('breadcrumbs', [
-            'breadcrumbs' => BreadcrumbsComponent::class,
-        ]);
+        Blade::component('breadcrumbs', BreadcrumbsComponent::class);
 
         if ($this->app->runningInConsole()) {
             $this->publishes([$this->configPath() => config_path('breadcrumbs.php')], 'config');
