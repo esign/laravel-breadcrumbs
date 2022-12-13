@@ -24,30 +24,47 @@ class Breadcrumbs
         Breadcrumb | iterable | string | null $label,
         string | null $url = null,
     ): static {
+        return $this->addOrPrepend($label, $url, false);
+    }
+
+    public function prepend(
+        Breadcrumb | iterable | string | null $label,
+        string | null $url = null,
+    ): static {
+        return $this->addOrPrepend($label, $url, true);
+    }
+
+    protected function addOrPrepend(
+        Breadcrumb | iterable | string | null $label,
+        string | null $url = null,
+        bool $prepend = false,
+    ): static {
         if (is_string($label) || is_null($label)) {
-            $this->add(Breadcrumb::create($label, $url));
+            $this->addOrPrepend(Breadcrumb::create($label, $url), null, $prepend);
         }
 
         if (is_iterable($label)) {
-            $this->addIterable($label);
+            $this->addOrPrependIterable($label, $prepend);
         }
 
         if ($label instanceof Breadcrumb) {
-            $this->breadcrumbs->push($label);
+            $prepend
+                ? $this->breadcrumbs->prepend($label)
+                : $this->breadcrumbs->add($label);
         }
 
         return $this;
     }
 
-    protected function addIterable(iterable $breadcrumbs): void
+    protected function addOrPrependIterable(iterable $breadcrumbs, bool $prepend): void
     {
         foreach ($breadcrumbs as $key => $value) {
             if ($value instanceof Breadcrumb) {
-                $this->add($value);
+                $this->addOrPrepend($value, null, $prepend);
             }
 
             if (is_string($value) || is_null($value)) {
-                $this->add(Breadcrumb::create($key, $value));
+                $this->addOrPrepend(Breadcrumb::create($key, $value), null, $prepend);
             }
         }
     }

@@ -78,6 +78,48 @@ class BreadcrumbsTest extends TestCase
     }
 
     /** @test */
+    public function it_can_prepend_a_single_breadcrumb()
+    {
+        Breadcrumbs::add(['Blog' => null])->prepend('Home', 'http://localhost');
+
+        $breadcrumbs = Breadcrumbs::get();
+        $firstBreadcrumb = $breadcrumbs->first();
+        $secondBreadcrumb = $breadcrumbs->skip(1)->first();
+
+        $this->assertInstanceOf(Collection::class, $breadcrumbs);
+        $this->assertCount(2, $breadcrumbs);
+
+        $this->assertInstanceOf(Breadcrumb::class, $firstBreadcrumb);
+        $this->assertEquals('Home', $firstBreadcrumb->label);
+        $this->assertEquals('http://localhost', $firstBreadcrumb->url);
+
+        $this->assertInstanceOf(Breadcrumb::class, $secondBreadcrumb);
+        $this->assertEquals('Blog', $secondBreadcrumb->label);
+        $this->assertEquals(null, $secondBreadcrumb->url);
+    }
+
+    /** @test */
+    public function it_can_prepend_multiple_breadcrumbs()
+    {
+        Breadcrumbs::add(['Blog' => null])->prepend(['Home' => 'http://localhost']);
+
+        $breadcrumbs = Breadcrumbs::get();
+        $firstBreadcrumb = $breadcrumbs->first();
+        $secondBreadcrumb = $breadcrumbs->skip(1)->first();
+
+        $this->assertInstanceOf(Collection::class, $breadcrumbs);
+        $this->assertCount(2, $breadcrumbs);
+
+        $this->assertInstanceOf(Breadcrumb::class, $firstBreadcrumb);
+        $this->assertEquals('Home', $firstBreadcrumb->label);
+        $this->assertEquals('http://localhost', $firstBreadcrumb->url);
+
+        $this->assertInstanceOf(Breadcrumb::class, $secondBreadcrumb);
+        $this->assertEquals('Blog', $secondBreadcrumb->label);
+        $this->assertEquals(null, $secondBreadcrumb->url);
+    }
+
+    /** @test */
     public function it_can_cast_to_json_ld()
     {
         Breadcrumbs::add(Breadcrumb::create('Home', 'http://localhost'));

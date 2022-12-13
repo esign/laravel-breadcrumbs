@@ -24,8 +24,8 @@ This is typically done from the controller.
 use Esign\Breadcrumbs\Breadcrumb;
 use Esign\Breadcrumbs\Facades\Breadcrumbs;
 
-Breadcrumbs::add('Home');
-Breadcrumbs::add(Breadcrumb::create('Home'));
+Breadcrumbs::add('Home', 'http://example.com');
+Breadcrumbs::add(Breadcrumb::create('Home', 'http://example.com'));
 ```
 
 Or add multiple breadcrumbs at once:
@@ -41,6 +41,15 @@ Breadcrumbs::add([
     Breadcrumb::create('Home', 'https://www.example.com'),
     Breadcrumb::create('Blog'),
 ]);
+```
+
+You may also prepend breadcrumbs:
+```php
+use Esign\Breadcrumbs\Breadcrumb;
+use Esign\Breadcrumbs\Facades\Breadcrumbs;
+
+Breadcrumbs::prepend('Home');
+Breadcrumbs::prepend(Breadcrumb::create('Home'));
 ```
 
 ### Converting to JsonLd
