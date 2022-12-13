@@ -43,7 +43,8 @@ Breadcrumbs::add([
 ]);
 ```
 
-You may also prepend breadcrumbs:
+You may also prepend breadcrumbs.
+This may be useful when you always want to add a Home breadcrumb:
 ```php
 use Esign\Breadcrumbs\Breadcrumb;
 use Esign\Breadcrumbs\Facades\Breadcrumbs;
