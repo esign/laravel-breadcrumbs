@@ -48,8 +48,8 @@ You may also prepend breadcrumbs:
 use Esign\Breadcrumbs\Breadcrumb;
 use Esign\Breadcrumbs\Facades\Breadcrumbs;
 
-Breadcrumbs::prepend('Home');
-Breadcrumbs::prepend(Breadcrumb::create('Home'));
+Breadcrumbs::prepend('Home', route('home'));
+Breadcrumbs::prepend(Breadcrumb::create('Home', route('home')));
 ```
 
 ### Converting to JsonLd
@@ -89,6 +89,10 @@ Breadcrumbs::add([
   <li class="breadcrumbs__item">Blog</li>
 </ol>
 ```
+
+### Customizing the breadcrumbs view
+You may customize the breadcrumbs view by creating your own component.
+Take a look at the default [class based component](src/View/Components/BreadcrumbsComponent.php) and [related view](resources/views/components/breadcrumbs.blade.php) that's shipped with this package for an example.
 
 ### Testing
 
