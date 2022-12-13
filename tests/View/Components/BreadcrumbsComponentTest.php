@@ -19,9 +19,25 @@ class BreadcrumbsComponentTest extends TestCase
     }
 
     /** @test */
+    public function it_wont_render_urls_for_the_last_breadcrumb()
+    {
+        Breadcrumbs::add([
+            'Home' => 'http://localhost',
+            'Blog' => 'http://localhost/blog'
+        ]);
+
+        $component = $this->blade('<x-breadcrumbs />');
+
+        $component->assertDontSee('http://localhost/blog');
+    }
+
+    /** @test */
     public function it_can_render_breadcrumbs_without_urls()
     {
-        Breadcrumbs::add('Home');
+        Breadcrumbs::add([
+            'Home' => null,
+            'Blog' => null,
+        ]);
 
         $component = $this->blade('<x-breadcrumbs />');
 
@@ -32,7 +48,10 @@ class BreadcrumbsComponentTest extends TestCase
     /** @test */
     public function it_can_render_breadcrumbs_with_urls()
     {
-        Breadcrumbs::add('Home', 'http://localhost');
+        Breadcrumbs::add([
+            'Home' => 'http://localhost',
+            'Blog' => null,
+        ]);
 
         $component = $this->blade('<x-breadcrumbs />');
 
