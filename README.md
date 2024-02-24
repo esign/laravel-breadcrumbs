@@ -92,8 +92,10 @@ Breadcrumbs::add([
 ```
 
 ### Customizing the breadcrumbs view
-You may customize the breadcrumbs view by creating your own component.
-Take a look at the default [class based component](src/View/Components/BreadcrumbsComponent.php) and [related view](resources/views/components/breadcrumbs.blade.php) that's shipped with this package for an example.
+In case you want to customize the view components you may publish the views:
+```bash
+php artisan vendor:publish --provider="Esign\Breadcrumbs\BreadcrumbsServiceProvider" --tag="views"
+```
 
 ### Testing
 

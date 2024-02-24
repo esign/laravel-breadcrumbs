@@ -12,6 +12,10 @@ class BreadcrumbsServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom($this->viewPath(), 'breadcrumbs');
         Blade::component('breadcrumbs', BreadcrumbsComponent::class);
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([$this->viewPath() => resource_path('views/vendor/breadcrumbs')], 'views');
+        }
     }
 
     public function register()
