@@ -2,24 +2,25 @@
 
 namespace Esign\Breadcrumbs\Tests\View\Components;
 
+use PHPUnit\Framework\Attributes\Test;
 use Esign\Breadcrumbs\Facades\Breadcrumbs;
 use Esign\Breadcrumbs\Tests\TestCase;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 
-class BreadcrumbsComponentTest extends TestCase
+final class BreadcrumbsComponentTest extends TestCase
 {
     use InteractsWithViews;
 
-    /** @test */
-    public function it_wont_render_anything_if_breadcrumbs_are_empty()
+    #[Test]
+    public function it_wont_render_anything_if_breadcrumbs_are_empty(): void
     {
         $component = $this->blade('<x-breadcrumbs />');
 
         $this->assertEquals('', (string) $component);
     }
 
-    /** @test */
-    public function it_wont_render_urls_for_the_last_breadcrumb()
+    #[Test]
+    public function it_wont_render_urls_for_the_last_breadcrumb(): void
     {
         Breadcrumbs::add([
             'Home' => 'http://localhost',
@@ -31,8 +32,8 @@ class BreadcrumbsComponentTest extends TestCase
         $component->assertDontSee('http://localhost/blog');
     }
 
-    /** @test */
-    public function it_can_render_breadcrumbs_without_urls()
+    #[Test]
+    public function it_can_render_breadcrumbs_without_urls(): void
     {
         Breadcrumbs::add([
             'Home' => null,
@@ -45,8 +46,8 @@ class BreadcrumbsComponentTest extends TestCase
         $component->assertSee('Home');
     }
 
-    /** @test */
-    public function it_can_render_breadcrumbs_with_urls()
+    #[Test]
+    public function it_can_render_breadcrumbs_with_urls(): void
     {
         Breadcrumbs::add([
             'Home' => 'http://localhost',
