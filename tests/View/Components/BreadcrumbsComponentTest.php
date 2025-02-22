@@ -12,7 +12,7 @@ class BreadcrumbsComponentTest extends TestCase
     use InteractsWithViews;
 
     #[Test]
-    public function it_wont_render_anything_if_breadcrumbs_are_empty()
+    public function it_wont_render_anything_if_breadcrumbs_are_empty(): void
     {
         $component = $this->blade('<x-breadcrumbs />');
 
@@ -20,7 +20,7 @@ class BreadcrumbsComponentTest extends TestCase
     }
 
     #[Test]
-    public function it_wont_render_urls_for_the_last_breadcrumb()
+    public function it_wont_render_urls_for_the_last_breadcrumb(): void
     {
         Breadcrumbs::add([
             'Home' => 'http://localhost',
@@ -33,7 +33,7 @@ class BreadcrumbsComponentTest extends TestCase
     }
 
     #[Test]
-    public function it_can_render_breadcrumbs_without_urls()
+    public function it_can_render_breadcrumbs_without_urls(): void
     {
         Breadcrumbs::add([
             'Home' => null,
@@ -47,7 +47,7 @@ class BreadcrumbsComponentTest extends TestCase
     }
 
     #[Test]
-    public function it_can_render_breadcrumbs_with_urls()
+    public function it_can_render_breadcrumbs_with_urls(): void
     {
         Breadcrumbs::add([
             'Home' => 'http://localhost',
