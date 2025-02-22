@@ -7,7 +7,7 @@ use Esign\Breadcrumbs\Facades\Breadcrumbs;
 use Esign\Breadcrumbs\Tests\TestCase;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 
-class BreadcrumbsComponentTest extends TestCase
+final class BreadcrumbsComponentTest extends TestCase
 {
     use InteractsWithViews;
 

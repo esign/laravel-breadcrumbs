@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Spatie\SchemaOrg\BreadcrumbList;
 use Spatie\SchemaOrg\ListItem;
 
-class BreadcrumbsTest extends TestCase
+final class BreadcrumbsTest extends TestCase
 {
     #[Test]
     public function it_can_get_the_breadcrumbs(): void
