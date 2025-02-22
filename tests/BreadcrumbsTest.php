@@ -2,6 +2,7 @@
 
 namespace Esign\Breadcrumbs\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Esign\Breadcrumbs\Breadcrumb;
 use Esign\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Support\Collection;
@@ -10,14 +11,14 @@ use Spatie\SchemaOrg\ListItem;
 
 class BreadcrumbsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_get_the_breadcrumbs()
     {
         $this->assertInstanceOf(Collection::class, $breadcrumbs = Breadcrumbs::get());
         $this->assertCount(0, $breadcrumbs);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_a_single_breadcrumb()
     {
         Breadcrumbs::add(Breadcrumb::create('Home', 'http://localhost'));
@@ -29,7 +30,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals('http://localhost', $breadcrumb->url);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_breadcrumbs()
     {
         Breadcrumbs::add([
@@ -41,7 +42,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertCount(2, $breadcrumbs);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_using_label_and_url_as_key_and_value()
     {
         Breadcrumbs::add(['Home' => 'http://localhost']);
@@ -53,7 +54,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals('http://localhost', $breadcrumb->url);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_using_label_and_url_as_parameters()
     {
         Breadcrumbs::add('Home', 'http://localhost');
@@ -65,7 +66,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals('http://localhost', $breadcrumb->url);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_a_label_as_a_string_without_providing_a_url()
     {
         Breadcrumbs::add('Home');
@@ -77,7 +78,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals(null, $breadcrumb->url);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_prepend_a_single_breadcrumb()
     {
         Breadcrumbs::add(['Blog' => null])->prepend('Home', 'http://localhost');
@@ -98,7 +99,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals(null, $secondBreadcrumb->url);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_prepend_multiple_breadcrumbs()
     {
         Breadcrumbs::add(['Blog' => null])->prepend(['Home' => 'http://localhost']);
@@ -119,7 +120,7 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals(null, $secondBreadcrumb->url);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_cast_to_json_ld()
     {
         Breadcrumbs::add(Breadcrumb::create('Home', 'http://localhost'));
